@@ -49,7 +49,10 @@ df = st.session_state.uploaded_df
 
 # URL Default
 if data_source == "🌐 URL Default (ASII)":
-    st.info("Dataset: Harga Penutupan Saham ASII dari GitHub")
+    st.markdown(
+        'Notes: Dataset Harga Penutupan Saham '
+        '[ASII](https://github.com/dyahprimasarii/Data-Saham/blob/main/Harga%20Penutupan%20ASII) dari GitHub'
+    )
     url = "https://raw.githubusercontent.com/dyahprimasarii/Data-Saham/refs/heads/main/Harga%20Penutupan%20ASII"
     
     if st.button("📥 Load Data", type="primary"):

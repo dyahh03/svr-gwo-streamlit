@@ -209,7 +209,7 @@ if st.session_state.get('gwo_results'):
     
     # Tabel perbandingan
     st.markdown("---")
-    st.markdown("### � Tabel Perbandingan")
+    st.markdown("### 📋 Tabel Perbandingan")
     
     df_comp = pd.DataFrame({
         'No': range(1, len(y_actual) + 1),
