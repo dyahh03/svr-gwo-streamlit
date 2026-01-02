@@ -207,16 +207,26 @@ if st.session_state.get('gwo_results'):
     col2.metric("Bias", f"{results['model_info']['bias']:.6f}")
     col3.metric("Evaluasi", f"{gwo['config']['n_wolves'] * gwo['config']['max_iter']}")
     
-    # Download
+    # Tabel perbandingan
     st.markdown("---")
-    st.markdown("### 💾 Download")
+    st.markdown("### � Tabel Perbandingan")
     
     df_comp = pd.DataFrame({
         'No': range(1, len(y_actual) + 1),
-        'Actual': y_actual, 'Predicted': y_pred,
+        'Actual': y_actual,
+        'Predicted': y_pred,
         'Error': np.abs(y_actual - y_pred),
         'Error (%)': np.abs((y_actual - y_pred) / y_actual) * 100
     })
+    
+    st.dataframe(df_comp.style.format({
+        'Actual': 'Rp {:,.0f}', 'Predicted': 'Rp {:,.0f}',
+        'Error': 'Rp {:,.0f}', 'Error (%)': '{:.2f}%'
+    }), use_container_width=True, height=300)
+    
+    # Download
+    st.markdown("---")
+    st.markdown("### 💾 Download")
     
     buffer = BytesIO()
     with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
