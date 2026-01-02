@@ -87,9 +87,9 @@ df_comp = pd.DataFrame({
 # Tentukan pemenang per metrik
 def get_winner(row):
     if row['Metrik'] in ['MAPE Train (%)', 'MAPE Test (%)', 'RMSE Test']:
-        return '🐺' if row['SVR-GWO'] < row['SVR Default'] else '🤖'
+        return 'SVR-GWO' if row['SVR-GWO'] < row['SVR Default'] else 'SVR Default'
     elif row['Metrik'] == 'R² Test':
-        return '🐺' if row['SVR-GWO'] > row['SVR Default'] else '🤖'
+        return 'SVR-GWO' if row['SVR-GWO'] > row['SVR Default'] else 'SVR Default'
     return '-'
 
 df_comp['Best'] = df_comp.apply(get_winner, axis=1)
